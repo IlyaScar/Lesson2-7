@@ -5,8 +5,9 @@ import java.util.*
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-
+    //Отвыкай писать лишние строки пустые, там где они не нужны, это важно для читабельности
     //task1
+    //Это не enum, как написано в задании
     class HttpStatus (
         val code: Int
         ) {
@@ -24,10 +25,12 @@ fun main() {
         600
     )
 
+    //Что за пустая функция?
     fun isSuccess() {
     }
 
     //task2
+    //По заданию не только преобразование в lowercase
     fun String.toSlug(): String {
         return this.lowercase()
     }
@@ -43,9 +46,11 @@ fun main() {
 }
 
 //task4
+//Если тела класса нет, не нужны фигуные скобки
 abstract class AbstractApiClient : ApiClient {
 }
 
+//Почему 2 класса ниже абстрактные?
 abstract class newApiClient : ApiClient {
     override val baseEndpoint: String = "New value"
 
@@ -62,12 +67,12 @@ abstract class newApiClient2 : ApiClient {
 //task4
 interface ApiClient {
     val baseEndpoint: String
-    val test: Int
+    val test: Int //Что за переменная??
     fun get(id: UUID) {
-        println("Message is sent to endpoint")
+        println("Message is sent to endpoint") // распечатай по какому энпоинту
     }
     fun post(body:Any) {
-        println("Message is sent to endpoint")
+        println("Message is sent to endpoint") // распечатай по какому энпоинту
     }
 
 
