@@ -8,94 +8,68 @@ fun main() {
     //Отвыкай писать лишние строки пустые, там где они не нужны, это важно для читабельности
     //task1
     //Это не enum, как написано в задании
-    class HttpStatus (
-        val code: Int
-        ) {
-    }
-    val code1 = HttpStatus(
-        200
-    )
-    val code2 = HttpStatus(
-        400
-    )
-    val code3 = HttpStatus(
-        500
-    )
-    val code4 = HttpStatus(
-        600
-    )
-
-    //Что за пустая функция?
-    fun isSuccess() {
-    }
-
     //task2
     //По заданию не только преобразование в lowercase
     fun String.toSlug(): String {
         return this.lowercase()
+        .replace(' ','-')
     }
     val testText = "Test String"
     println(testText.toSlug())
 
     //task3
-
     Dbconfig.successfulConnect()
     Dbconfig.connectionIsClosed()
-
-
+}
+//task1
+enum class HttpStatus (
+    val code: Int
+) {
+    OK(200),
+    BAD_REQUEST(400),
+    NOT_FOUND(404),
+    INTERNAL_ERROR(500);
+    //Что за пустая функция?
+    fun isSuccess() : Boolean = code in 200..299
 }
 
 //task4
 //Если тела класса нет, не нужны фигуные скобки
 abstract class AbstractApiClient : ApiClient {
 }
-
 //Почему 2 класса ниже абстрактные?
-abstract class newApiClient : ApiClient {
+class newApiClient : AbstractApiClient () {
     override val baseEndpoint: String = "New value"
-
 }
-abstract class newApiClient2 : ApiClient {
+class newApiClient2 : AbstractApiClient () {
+    override val baseEndpoint: String = "New value"
     override fun post(body: Any) {
-
-        println("New Post method")
+        println("new post")
     }
 }
-
-
 
 //task4
 interface ApiClient {
     val baseEndpoint: String
-    val test: Int //Что за переменная??
     fun get(id: UUID) {
-        println("Message is sent to endpoint") // распечатай по какому энпоинту
+        println("Message is sent to endpoint $baseEndpoint/$id") // распечатай по какому энпоинту
     }
     fun post(body:Any) {
-        println("Message is sent to endpoint") // распечатай по какому энпоинту
+        println("Message is sent to endpoint $baseEndpoint/$body") // распечатай по какому энпоинту
     }
-
-
 }
 
 //task3
 object Dbconfig {
-
     const val login = "12345"
     const val password = "12345"
     const val dbLink = "www.mail.ru"
-
     fun successfulConnect() {
-
         println("Connection is successfull")
     }
-
     fun connectionIsClosed() {
-
         println("Connection is closed")
-
     }
-
 }
 
 
