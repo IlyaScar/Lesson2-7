@@ -20,6 +20,11 @@ fun main() {
     //task3
     Dbconfig.successfulConnect()
     Dbconfig.connectionIsClosed()
+
+    //task4
+    val API_Get_Books = newApiClient()
+    println(API_Get_Books.post("books.api"))
+    println(API_Get_Books.get(UUID.randomUUID()))
 }
 //task1
 enum class HttpStatus (
@@ -39,10 +44,10 @@ abstract class AbstractApiClient : ApiClient {
 }
 //Почему 2 класса ниже абстрактные?
 class newApiClient : AbstractApiClient () {
-    override val baseEndpoint: String = "New value"
+    override val baseEndpoint: String = "https://api.removeitem"
 }
 class newApiClient2 : AbstractApiClient () {
-    override val baseEndpoint: String = "New value"
+    override val baseEndpoint: String = "https://api.additem"
     override fun post(body: Any) {
         println("new post")
     }
@@ -61,7 +66,7 @@ interface ApiClient {
 
 //task3
 object Dbconfig {
-    const val login = "12345"
+    const val login = "Ilya"
     const val password = "12345"
     const val dbLink = "www.mail.ru"
     fun successfulConnect() {
