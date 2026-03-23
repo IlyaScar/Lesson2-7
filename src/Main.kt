@@ -54,17 +54,20 @@ class newApiClient2 : AbstractApiClient () {
 }
 
 //task4
+//даже если пока все пишешь в одном файле, давай придерживаться порядка определения, на 43 строке, ты уже имплементируешь этот интерфейс, поэтому лучше его определить до этого, а то читать не удобно
 interface ApiClient {
     val baseEndpoint: String
     fun get(id: UUID) {
         println("Message is sent to endpoint $baseEndpoint/$id") // распечатай по какому энпоинту
     }
     fun post(body:Any) {
+        //body это не часть эндпоинта
         println("Message is sent to endpoint $baseEndpoint/$body") // распечатай по какому энпоинту
     }
 }
 
 //task3
+//По заданию в DbConfig должны передаваться данные для подключения, а не полями заполнены быть
 object Dbconfig {
     const val login = "Ilya"
     const val password = "12345"
